@@ -92,10 +92,8 @@
     /* ── Gallery ─────────────────────────────── */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .gallery-item { position: relative; border-radius: var(--radius); overflow: hidden; height: 380px; }
-
-    /* Beautiful inline SVG backgrounds — swap with <img> later */
-    .gallery-placeholder { width: 100%; height: 100%; transition: transform 0.5s; display: block; }
-    .gallery-item:hover .gallery-placeholder { transform: scale(1.03); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
 
     .gallery-caption {
       position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;
@@ -181,7 +179,7 @@
     </div>
   </section>
 
-  <!-- ── Gallery ───────────────────────────── -->
+   <!-- ── Gallery ───────────────────────────── -->
   <section id="gallery">
     <div class="section-header">
       <h2>Our Work</h2>
@@ -189,58 +187,26 @@
     </div>
     <div class="gallery-grid">
 
-      <!-- Gallery Image 1 — Replace this &lt;svg&gt; with: &lt;img src="your-photo.jpg"&gt; -->
       <div class="gallery-item">
-        <svg class="gallery-placeholder" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" fill="#d4e8d0"/>
-          <ellipse cx="250" cy="450" rx="180" ry="80" fill="#a8c7a0" opacity="0.6"/>
-          <ellipse cx="550" cy="400" rx="200" ry="90" fill="#b8dab0" opacity="0.5"/>
-          <rect x="380" y="100" width="12" height="350" rx="6" fill="#6b4e36"/>
-          <ellipse cx="386" cy="90" rx="70" ry="80" fill="#2d6a2e"/>
-          <ellipse cx="386" cy="130" rx="55" ry="65" fill="#3a8a3c"/>
-          <path d="M100,450 Q150,400 200,430 Q250,380 300,410 Q350,370 400,400 Q450,360 500,390 Q550,350 600,380 Q650,360 700,370" stroke="#5a9e5a" stroke-width="3" fill="none" opacity="0.4"/>
-          <circle cx="200" cy="200" r="25" fill="#f0c040" opacity="0.7"/>
-          <path d="M180,200 Q200,180 220,200" stroke="#f0d060" stroke-width="2" fill="none" opacity="0.5"/>
-        </svg>
+        <img src="https://images.pexels.com/photos/16630711/pexels-photo-16630711.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Lawn mowing in action" loading="lazy">
         <div class="gallery-caption">Modern Garden Design</div>
       </div>
 
-      <!-- Gallery Image 2 — Replace this &lt;svg&gt; with: &lt;img src="your-photo.jpg"&gt; -->
       <div class="gallery-item">
-        <svg class="gallery-placeholder" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" fill="#c4e0b8"/>
-          <rect x="0" y="250" width="800" height="350" fill="#90c47a" opacity="0.7"/>
-          <rect x="0" y="100" width="800" height="150" fill="#b0d4a0" opacity="0.3"/>
-          <ellipse cx="400" cy="200" rx="300" ry="60" fill="#7ab45e" opacity="0.4"/>
-          <rect x="200" y="180" width="8" height="150" fill="#6b4e36" opacity="0.5"/>
-          <ellipse cx="204" cy="175" rx="40" ry="35" fill="#4a8a4c" opacity="0.5"/>
-          <rect x="580" y="160" width="8" height="130" fill="#6b4e36" opacity="0.4"/>
-          <ellipse cx="584" cy="155" rx="35" ry="30" fill="#4a8a4c" opacity="0.4"/>
-          <path d="M0,250 Q100,230 200,260 Q300,220 400,250 Q500,210 600,240 Q700,220 800,250" stroke="#8ab46a" stroke-width="2" fill="none"/>
-        </svg>
+        <img src="https://images.pexels.com/photos/9229815/pexels-photo-9229815.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Lush green garden hedge" loading="lazy">
         <div class="gallery-caption">Premium Lawn Maintenance</div>
       </div>
 
-      <!-- Gallery Image 3 — Replace this &lt;svg&gt; with: &lt;img src="your-photo.jpg"&gt; -->
       <div class="gallery-item">
-        <svg class="gallery-placeholder" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-          <rect width="800" height="600" fill="#d0e4c4"/>
-          <ellipse cx="400" cy="500" rx="350" ry="120" fill="#98c87a" opacity="0.5"/>
-          <ellipse cx="250" cy="400" rx="120" ry="60" fill="#b0d8a0" opacity="0.4"/>
-          <rect x="360" y="120" width="10" height="300" rx="5" fill="#7a5a3e"/>
-          <ellipse cx="365" cy="110" rx="60" ry="70" fill="#2e7a30"/>
-          <ellipse cx="365" cy="150" rx="45" ry="55" fill="#3c9840"/>
-          <path d="M100,350 Q150,300 200,330 Q250,280 300,310 Q350,270 400,300 Q450,260 500,290 Q550,250 600,280 Q650,260 700,270" stroke="#5a9e5a" stroke-width="3" fill="none" opacity="0.3"/>
-          <circle cx="180" cy="250" r="15" fill="#e07070" opacity="0.6"/>
-          <circle cx="250" cy="220" r="12" fill="#e0a070" opacity="0.5"/>
-          <circle cx="550" cy="300" r="18" fill="#d070a0" opacity="0.4"/>
-          <circle cx="600" cy="270" r="10" fill="#e0c070" opacity="0.5"/>
-        </svg>
+        <img src="https://images.pexels.com/photos/3027220/pexels-photo-3027220.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Beautiful landscaped backyard" loading="lazy">
         <div class="gallery-caption">Complete Backyard Renovations</div>
       </div>
 
     </div>
   </section>
+
+  <!-- ── Gallery Attribution ─────────────────── -->
+  <p style="text-align:center; font-size:0.8rem; color:#999; max-width:1200px; margin:1rem auto 0;">📷 Photos provided by <a href="https://www.pexels.com" style="color:var(--primary-light);">Pexels</a></p>
 
   <!-- ── Testimonials ──────────────────────── -->
   <section id="testimonials">
