@@ -53,10 +53,14 @@
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: -1;
-      background: linear-gradient(rgba(47,93,55,0.55), rgba(47,93,55,0.6));
+      background: linear-gradient(135deg, #1a4d2e 0%, #2F5D37 40%, #3d7a48 100%);
       display: flex; align-items: center; justify-content: center;
     }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 1; }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%234E8B56' opacity='0.15' d='M10,80 Q15,75 20,82 Q25,78 30,85 Q35,80 40,83 Q45,77 50,81 Q55,76 60,84 Q65,80 70,82 Q75,78 80,86 Q85,82 90,84 Z'/%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
     .hero-content { position: relative; z-index: 1; color: var(--white); max-width: 700px; }
     .hero-content h1 { color: var(--white); text-shadow: 0 2px 15px rgba(0,0,0,0.3); margin-bottom: 1.5rem; }
     .hero-content p { color: rgba(255,255,255,0.92); font-size: 1.3rem; margin: 0 auto 2.5rem; }
@@ -88,8 +92,11 @@
     /* ── Gallery ─────────────────────────────── */
     .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .gallery-item { position: relative; border-radius: var(--radius); overflow: hidden; height: 380px; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block; }
-    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* Beautiful inline SVG backgrounds — swap with <img> later */
+    .gallery-placeholder { width: 100%; height: 100%; transition: transform 0.5s; display: block; }
+    .gallery-item:hover .gallery-placeholder { transform: scale(1.03); }
+
     .gallery-caption {
       position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;
       background: linear-gradient(to top, rgba(47,93,55,0.85), transparent);
@@ -108,8 +115,14 @@
       background: var(--primary); color: var(--white); border-radius: 24px;
       padding: 5rem; text-align: center; margin: 0 auto 4rem; max-width: 1200px; position: relative; overflow: hidden;
     }
-    .cta-section h2 { color: var(--white); }
-    .cta-section p { color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2.5rem; }
+    .cta-section::after {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath fill='%234E8B56' opacity='0.12' d='M30,0 Q35,5 32,10 Q38,8 40,15 Q35,12 40,18 Q45,15 42,22 Q48,20 44,28 Q48,26 46,34 Q40,32 42,40 Q38,40 38,48 Q35,46 36,54 Q32,52 34,60 L26,60 C27,52 24,44 28,36 C24,28 26,20 30,12 Z'/%3E%3C/svg%3E") repeat;
+      pointer-events: none;
+    }
+    .cta-section h2 { color: var(--white); position: relative; z-index: 1; }
+    .cta-section p { color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2.5rem; position: relative; z-index: 1; }
+    .cta-section .btn { position: relative; z-index: 1; }
 
     /* ── Footer ──────────────────────────────── */
     footer { background: var(--text); color: #aaa; padding: 4rem 5%; text-align: center; font-size: 0.9rem; }
@@ -118,7 +131,6 @@
     @media (max-width: 768px) {
       .hero-content h1 { font-size: 2.5rem; }
       section { padding: 4rem 1.5rem; }
-      nav a { margin-left: 1rem; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -136,9 +148,7 @@
 
   <!-- ── Hero ──────────────────────────────── -->
   <section class="hero">
-    <div class="hero-bg">
-      <img src="https://picsum.photos/1920/1080?grayscale&blur=1" alt="Beautiful green lawn">
-    </div>
+    <div class="hero-bg"></div>
     <div class="hero-content">
       <h1>Your Lawn, Perfection.</h1>
       <p>Premium lawn care and landscaping services tailored to the unique climate of Masterton, New Zealand.</p>
@@ -178,18 +188,57 @@
       <p>A glimpse into our recent transformations across the Wairarapa region.</p>
     </div>
     <div class="gallery-grid">
+
+      <!-- Gallery Image 1 — Replace this &lt;svg&gt; with: &lt;img src="your-photo.jpg"&gt; -->
       <div class="gallery-item">
-        <img src="https://picsum.photos/800/600?random=1" alt="Beautiful manicured garden">
+        <svg class="gallery-placeholder" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="600" fill="#d4e8d0"/>
+          <ellipse cx="250" cy="450" rx="180" ry="80" fill="#a8c7a0" opacity="0.6"/>
+          <ellipse cx="550" cy="400" rx="200" ry="90" fill="#b8dab0" opacity="0.5"/>
+          <rect x="380" y="100" width="12" height="350" rx="6" fill="#6b4e36"/>
+          <ellipse cx="386" cy="90" rx="70" ry="80" fill="#2d6a2e"/>
+          <ellipse cx="386" cy="130" rx="55" ry="65" fill="#3a8a3c"/>
+          <path d="M100,450 Q150,400 200,430 Q250,380 300,410 Q350,370 400,400 Q450,360 500,390 Q550,350 600,380 Q650,360 700,370" stroke="#5a9e5a" stroke-width="3" fill="none" opacity="0.4"/>
+          <circle cx="200" cy="200" r="25" fill="#f0c040" opacity="0.7"/>
+          <path d="M180,200 Q200,180 220,200" stroke="#f0d060" stroke-width="2" fill="none" opacity="0.5"/>
+        </svg>
         <div class="gallery-caption">Modern Garden Design</div>
       </div>
+
+      <!-- Gallery Image 2 — Replace this &lt;svg&gt; with: &lt;img src="your-photo.jpg"&gt; -->
       <div class="gallery-item">
-        <img src="https://picsum.photos/800/600?random=2" alt="Lush green lawn mowing">
+        <svg class="gallery-placeholder" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="600" fill="#c4e0b8"/>
+          <rect x="0" y="250" width="800" height="350" fill="#90c47a" opacity="0.7"/>
+          <rect x="0" y="100" width="800" height="150" fill="#b0d4a0" opacity="0.3"/>
+          <ellipse cx="400" cy="200" rx="300" ry="60" fill="#7ab45e" opacity="0.4"/>
+          <rect x="200" y="180" width="8" height="150" fill="#6b4e36" opacity="0.5"/>
+          <ellipse cx="204" cy="175" rx="40" ry="35" fill="#4a8a4c" opacity="0.5"/>
+          <rect x="580" y="160" width="8" height="130" fill="#6b4e36" opacity="0.4"/>
+          <ellipse cx="584" cy="155" rx="35" ry="30" fill="#4a8a4c" opacity="0.4"/>
+          <path d="M0,250 Q100,230 200,260 Q300,220 400,250 Q500,210 600,240 Q700,220 800,250" stroke="#8ab46a" stroke-width="2" fill="none"/>
+        </svg>
         <div class="gallery-caption">Premium Lawn Maintenance</div>
       </div>
+
+      <!-- Gallery Image 3 — Replace this &lt;svg&gt; with: &lt;img src="your-photo.jpg"&gt; -->
       <div class="gallery-item">
-        <img src="https://picsum.photos/800/600?random=3" alt="Lush backyard landscaping">
+        <svg class="gallery-placeholder" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="600" fill="#d0e4c4"/>
+          <ellipse cx="400" cy="500" rx="350" ry="120" fill="#98c87a" opacity="0.5"/>
+          <ellipse cx="250" cy="400" rx="120" ry="60" fill="#b0d8a0" opacity="0.4"/>
+          <rect x="360" y="120" width="10" height="300" rx="5" fill="#7a5a3e"/>
+          <ellipse cx="365" cy="110" rx="60" ry="70" fill="#2e7a30"/>
+          <ellipse cx="365" cy="150" rx="45" ry="55" fill="#3c9840"/>
+          <path d="M100,350 Q150,300 200,330 Q250,280 300,310 Q350,270 400,300 Q450,260 500,290 Q550,250 600,280 Q650,260 700,270" stroke="#5a9e5a" stroke-width="3" fill="none" opacity="0.3"/>
+          <circle cx="180" cy="250" r="15" fill="#e07070" opacity="0.6"/>
+          <circle cx="250" cy="220" r="12" fill="#e0a070" opacity="0.5"/>
+          <circle cx="550" cy="300" r="18" fill="#d070a0" opacity="0.4"/>
+          <circle cx="600" cy="270" r="10" fill="#e0c070" opacity="0.5"/>
+        </svg>
         <div class="gallery-caption">Complete Backyard Renovations</div>
       </div>
+
     </div>
   </section>
 
@@ -230,7 +279,6 @@
   </footer>
 
   <script>
-    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -238,8 +286,6 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
-
-    // Header shadow on scroll
     window.addEventListener('scroll', () => {
       const header = document.querySelector('header');
       header.style.boxShadow = window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.1)' : 'none';
